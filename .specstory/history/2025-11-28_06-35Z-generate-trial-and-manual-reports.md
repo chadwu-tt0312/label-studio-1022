@@ -16,7 +16,6 @@ _**Agent (model default, mode Agent)**_
 
 ---
 
-
 探索專案結構，分析關鍵檔案，以生成兩份報告。
 
 
@@ -24,7 +23,7 @@ _**Agent (model default, mode Agent)**_
 
 <tool-use data-tool-type="generic" data-tool-name="list_dir">
 <details>
-            <summary>Tool use: **list_directory** • Listed directory undefined • **0** results</summary>
+            <summary>Tool use: **list_dir** • Listed directory undefined • **0** results</summary>
         
 No results found
 </details>
@@ -129,7 +128,6 @@ Directory: **d:\_Code\_GitHub\label-studio-1022** (0 file)
 
 ---
 
-
 讀取關鍵檔案以收集資訊：
 
 
@@ -228,7 +226,6 @@ Could not find file 'label_studio/core/settings' in the workspace.
 
 
 ---
-
 
 讀取設定檔以了解環境變數與配置：
 
@@ -349,7 +346,6 @@ Output mode: content
 
 ---
 
-
 繼續搜尋環境變數與 Azure OpenAI 設定：
 
 
@@ -426,7 +422,7 @@ Output mode: content
 
 <tool-use data-tool-type="generic" data-tool-name="list_dir">
 <details>
-            <summary>Tool use: **list_directory** • Listed directory undefined • **0** results</summary>
+            <summary>Tool use: **list_dir** • Listed directory undefined • **0** results</summary>
         
 No results found
 </details>
@@ -437,7 +433,6 @@ No results found
 
 
 ---
-
 
 建立初始待辦清單，開始生成兩份報告：
 
@@ -582,7 +577,6 @@ Output mode: content
 
 ---
 
-
 生成兩份報告，先從試用報告開始：
 
 
@@ -590,7 +584,7 @@ Output mode: content
 
 <tool-use data-tool-type="write" data-tool-name="write">
 
-<details><summary>Tool use: **code_edit** • Edit file: eval/Label-Studio-試用報告.md</summary>
+<details><summary>Tool use: **write** • Edit file: eval/Label-Studio-試用報告.md</summary>
 
 **Chunk 1**
 Lines added: 222, lines removed: 1
@@ -832,7 +826,6 @@ Lines added: 222, lines removed: 1
 
 ---
 
-
 生成使用說明文件：
 
 
@@ -840,7 +833,7 @@ Lines added: 222, lines removed: 1
 
 <tool-use data-tool-type="write" data-tool-name="write">
 
-<details><summary>Tool use: **code_edit** • Edit file: eval/Label-Studio-使用說明.md</summary>
+<details><summary>Tool use: **write** • Edit file: eval/Label-Studio-使用說明.md</summary>
 
 **Chunk 1**
 Lines added: 754, lines removed: 1
@@ -1114,7 +1107,7 @@ Lines added: 754, lines removed: 1
 + name: label-studio
 + description: Label Studio Helm Chart
 + version: 1.0.0
-+ appVersion: &quot;1.23.0&quot;
++ appVersion: "1.23.0"
 + &#96;&#96;&#96;
 + 
 + **values.yaml**（關鍵設定）：
@@ -1132,7 +1125,7 @@ Lines added: 754, lines removed: 1
 + postgresql:
 +   enabled: true
 +   auth:
-+     postgresPassword: &quot;changeme&quot;
++     postgresPassword: "changeme"
 +   persistence:
 +     enabled: true
 +     storageClass: nfs-client
@@ -1154,9 +1147,9 @@ Lines added: 754, lines removed: 1
 +         image: heartexlabs/label-studio:latest
 +         env:
 +         - name: DJANGO_DB
-+           value: &quot;default&quot;
++           value: "default"
 +         - name: POSTGRE_HOST
-+           value: &quot;label-studio-postgresql&quot;
++           value: "label-studio-postgresql"
 +         volumeMounts:
 +         - name: data
 +           mountPath: /label-studio/data
@@ -1248,7 +1241,7 @@ Lines added: 754, lines removed: 1
 + 
 + &#96;&#96;&#96;python
 + from users.models import User
-+ User.objects.create_superuser(&#39;admin@example.com&#39;, &#39;your_password&#39;)
++ User.objects.create_superuser('admin@example.com', 'your_password')
 + &#96;&#96;&#96;
 + 
 + 或透過 Web UI 首次登入時註冊。
@@ -1405,7 +1398,7 @@ Lines added: 754, lines removed: 1
 + 2. 檢查連線資訊：確認 &#96;POSTGRE_HOST&#96;、&#96;POSTGRE_USER&#96;、&#96;POSTGRE_PASSWORD&#96;、&#96;POSTGRE_NAME&#96; 正確
 + 3. 測試連線：
 +    &#96;&#96;&#96;bash
-+    docker-compose exec app python -c &quot;import psycopg2; psycopg2.connect(host=&#39;db&#39;, user=&#39;postgres&#39;, password=&#39;postgres&#39;, dbname=&#39;postgres&#39;)&quot;
++    docker-compose exec app python -c "import psycopg2; psycopg2.connect(host='db', user='postgres', password='postgres', dbname='postgres')"
 +    &#96;&#96;&#96;
 + 4. 檢查防火牆：確認應用程式可存取資料庫連接埠（預設 5432）
 + 
@@ -1457,9 +1450,9 @@ Lines added: 754, lines removed: 1
 + **方法 3：API 匯入**
 + &#96;&#96;&#96;bash
 + curl -X POST http://localhost:8080/api/projects/{project_id}/import \
-+   -H &quot;Authorization: Token {your_token}&quot; \
-+   -H &quot;Content-Type: application/json&quot; \
-+   -d &#39;{&quot;tasks&quot;: [{&quot;data&quot;: {&quot;text&quot;: &quot;Sample text to label&quot;}}]}&#39;
++   -H "Authorization: Token {your_token}" \
++   -H "Content-Type: application/json" \
++   -d '{"tasks": [{"data": {"text": "Sample text to label"}}]}'
 + &#96;&#96;&#96;
 + 
 + #### 執行標註
@@ -1479,8 +1472,8 @@ Lines added: 754, lines removed: 1
 + 
 + **API 匯出範例**：
 + &#96;&#96;&#96;bash
-+ curl -X GET &quot;http://localhost:8080/api/projects/{project_id}/export?format=JSON&quot; \
-+   -H &quot;Authorization: Token {your_token}&quot; \
++ curl -X GET "http://localhost:8080/api/projects/{project_id}/export?format=JSON" \
++   -H "Authorization: Token {your_token}" \
 +   -o annotations.json
 + &#96;&#96;&#96;
 + 
@@ -1516,34 +1509,34 @@ Lines added: 754, lines removed: 1
 + 
 + &#96;&#96;&#96;bash
 + curl -X POST http://localhost:8080/api/projects \
-+   -H &quot;Authorization: Token {your_token}&quot; \
-+   -H &quot;Content-Type: application/json&quot; \
-+   -d &#39;{
-+     &quot;title&quot;: &quot;My Project&quot;,
-+     &quot;description&quot;: &quot;Project description&quot;,
-+     &quot;label_config&quot;: &quot;&lt;View&gt;&lt;Text name=\&quot;text\&quot; value=\&quot;$text\&quot;/&gt;&lt;Choices name=\&quot;label\&quot; toName=\&quot;text\&quot;&gt;&lt;Choice value=\&quot;positive\&quot;/&gt;&lt;Choice value=\&quot;negative\&quot;/&gt;&lt;/Choices&gt;&lt;/View&gt;&quot;
-+   }&#39;
++   -H "Authorization: Token {your_token}" \
++   -H "Content-Type: application/json" \
++   -d '{
++     "title": "My Project",
++     "description": "Project description",
++     "label_config": "&lt;View&gt;&lt;Text name=\"text\" value=\"$text\"/&gt;&lt;Choices name=\"label\" toName=\"text\"&gt;&lt;Choice value=\"positive\"/&gt;&lt;Choice value=\"negative\"/&gt;&lt;/Choices&gt;&lt;/View&gt;"
++   }'
 + &#96;&#96;&#96;
 + 
 + #### 匯入任務（API）
 + 
 + &#96;&#96;&#96;bash
 + curl -X POST http://localhost:8080/api/projects/{project_id}/import \
-+   -H &quot;Authorization: Token {your_token}&quot; \
-+   -H &quot;Content-Type: application/json&quot; \
-+   -d &#39;{
-+     &quot;tasks&quot;: [
-+       {&quot;data&quot;: {&quot;text&quot;: &quot;This is a positive review&quot;}},
-+       {&quot;data&quot;: {&quot;text&quot;: &quot;This is a negative review&quot;}}
++   -H "Authorization: Token {your_token}" \
++   -H "Content-Type: application/json" \
++   -d '{
++     "tasks": [
++       {"data": {"text": "This is a positive review"}},
++       {"data": {"text": "This is a negative review"}}
 +     ]
-+   }&#39;
++   }'
 + &#96;&#96;&#96;
 + 
 + #### 取得標註結果（API）
 + 
 + &#96;&#96;&#96;bash
-+ curl -X GET &quot;http://localhost:8080/api/projects/{project_id}/export?format=JSON&quot; \
-+   -H &quot;Authorization: Token {your_token}&quot;
++ curl -X GET "http://localhost:8080/api/projects/{project_id}/export?format=JSON" \
++   -H "Authorization: Token {your_token}"
 + &#96;&#96;&#96;
 + 
 + ---
@@ -1625,7 +1618,6 @@ Lines added: 754, lines removed: 1
 
 ---
 
-
 已生成兩份報告。檢查是否有錯誤：
 
 
@@ -1652,7 +1644,6 @@ Lint results
 
 
 ---
-
 
 已生成兩份報告：
 
