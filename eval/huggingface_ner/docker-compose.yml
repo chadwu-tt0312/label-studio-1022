@@ -1,0 +1,44 @@
+version: "3.8"
+
+services:
+  huggingface_ner:
+    container_name: huggingface_ner
+    image: heartexlabs/label-studio-ml-backend:huggingfacener-master
+    init: true
+    build:
+      context: .
+      args:
+        TEST_ENV: ${TEST_ENV}
+    environment:
+      # ### 修改點 1: 這裡不能寫 localhost，因為這是在容器內部 ###
+      # 如果 Label Studio 也在同一個 ls-network，且容器名稱是 label-studio，請改為 http://label-studio:8080
+      # 如果 Label Studio 是在宿主機 (Host) 上跑，請改為 http://host.docker.internal:8080
+      - LABEL_STUDIO_HOST=http://label-studio:8080
+      - LABEL_STUDIO_API_KEY=xxx
+      - BASELINE_MODEL_NAME=dslim/bert-base-NER
+      - FINETUNED_MODEL_NAME=finetuned_model
+      - START_TRAINING_EACH_N_UPDATES=1
+      - LEARNING_RATE=2e-5
+      - NUM_TRAIN_EPOCHS=3
+      - WEIGHT_DECAY=0.01
+      - BASIC_AUTH_USER=
+      - BASIC_AUTH_PASS=
+      - LOG_LEVEL=DEBUG
+      - ANY=PARAMETER
+      - WORKERS=1
+      - THREADS=8
+      - MODEL_DIR=/data/models
+    ports:
+      - "9090:9090"
+    volumes:
+      - "./data/server:/data"
+      - "./data/.cache:/root/.cache"
+
+    # ### 修改點 2: 指定網路 ###
+    networks:
+      - ls-network
+
+# ### 修改點 3: 定義網路 ###
+networks:
+  ls-network:
+    external: true # 這代表網路已經透過 'docker network create ls-network' 建立過了
