@@ -128,13 +128,17 @@ Label Studio 是一個功能完整、可商用的開源資料標註工具，適�
   - 預標註
 - [x] REST API 整合測試（匯入任務、匯出標註、Webhook）
   - 建立 Azure Blob
+  - webhook trigger for TASKS_CREATED
 - [ ] (SKIP) - 大量資料處理測試（10K+ 任務匯入/匯出效能）
 
 #### (SKIP) - 生產環境測試
 - [ ] Docker Compose 生產環境部署（Nginx + PostgreSQL）
 - [ ] Kubernetes Helm 部署（如適用）
 - [ ] 壓力測試表現（並發使用者、API 吞吐量）
-- [ ] 資料備份與還原流程
+- [x] 資料備份與還原流程
+  - `mydata.zip`
+    - `label_studio.sqlite3`
+    - `media/upload/<project_id>`
 
 #### 安全性測試
 - [x] 認證與授權機制驗證
