@@ -144,6 +144,9 @@ Label Studio 是一個功能完整、可商用的開源資料標註工具，適�
 - [x] 認證與授權機制驗證
   - PAT and JWT
 - [x] HTTPS/SSL 設定
+  - nginx
+  - Label Studio 本身支援 --ssl-key 和 --ssl-cert (但沒有自動 redirect、沒有 HSTS…)
+  - Label Studio Docker + Traefik 自動簽 Let's Encrypt
 - [ ] (SKIP) - 資料隱私與合規性檢查
 
 ---
